@@ -1,0 +1,45 @@
+package org.qualitythoughtBatch1;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.support.ui.Select;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.http.ConnectionFailedException;
+public class GetTitle {
+ public static void main(String[] args) throws InterruptedException {
+		
+String driverPath = System.setProperty("webdriver.chrome.driver","D:\\chromedriver_win32\\chromedriver.exe");
+System.out.println(driverPath);
+// Launch the browser
+ChromeOptions options = new ChromeOptions();
+options.addArguments("--remote-allow-origins=*");
+DesiredCapabilities capabilities = new DesiredCapabilities();
+capabilities.setCapability(ChromeOptions.CAPABILITY, options);
+options.merge(capabilities);
+ChromeDriver driver = new ChromeDriver(options);
+
+//Load the url
+	driver.get("https://magento.softwaretestingboard.com/?ref=hackernoon.com");
+	// maximize the browser
+	driver.manage().window().maximize();
+	Thread.sleep(2000);
+	driver.findElement(By.xpath("//div[1]/header/div[1]/div/ul/li[3]/a")).click();
+	driver.findElement(By.id("firstname")).sendKeys("Kausalya");
+	driver.findElement(By.id("lastname")).sendKeys("Raghavan");
+	driver.findElement(By.name("email")).sendKeys("rk2q1c2@gmail.com");
+	driver.findElement(By.name("password")).sendKeys("Ilove@2010");
+	driver.findElement(By.name("password_confirmation")).sendKeys("Ilove@2010");
+	driver.findElement(By.xpath("//*[@id=\"form-validate\"]/div/div[1]/button/span")).click();
+	Thread.sleep(5000);
+	String e =driver.findElement(By.xpath("/html/body/div[1]/header/div[1]/div/ul/li[1]/span")).getText();	
+       System.out.println(e); 
+ }
+ 
+ 
+
+	}
+
+
